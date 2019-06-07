@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "easy-bulma": {
+      "root": "projects/easy-bulma",
+      "sourceRoot": "projects/easy-bulma/src",
+      "projectType": "library",
+      "prefix": "eba",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/easy-bulma/tsconfig.lib.json",
+            "project": "projects/easy-bulma/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/easy-bulma/src/test.ts",
+            "tsConfig": "projects/easy-bulma/tsconfig.spec.json",
+            "karmaConfig": "projects/easy-bulma/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/easy-bulma/tsconfig.lib.json",
+              "projects/easy-bulma/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "easy-bulma-angular"

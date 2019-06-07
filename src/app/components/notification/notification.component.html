@@ -1,0 +1,4 @@
+<div *ngIf="notification" class="notification" [ngClass]="style" >
+  <button class="delete" (click)="toggleNotification()"></button>
+  {{message}}
+</div>

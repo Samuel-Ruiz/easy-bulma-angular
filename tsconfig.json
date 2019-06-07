@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "easy-bulma": [
+        "dist/easy-bulma"
+      ],
+      "easy-bulma/*": [
+        "dist/easy-bulma/*"
+      ]
+    }
   }
 }

@@ -1,0 +1,92 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" [href]="headerConfig.brandRef">
+      <img *ngIf="headerConfig.brandImg" [src]="headerConfig.brandImg" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
+       (click)="toggleNav = !toggleNav;" [ngClass]="{'is-active': toggleNav }">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarHeader" class="navbar-menu" [ngClass]="{'is-active': toggleNav }">
+    <div class="navbar-start">
+      <div *ngFor="let navbarItem of headerConfig.navBarLeft">
+        <div class="navbar-item">
+          <div [ngSwitch]="elementTypeModel.getValue(navbarItem.type)">
+            <div *ngSwitchCase="'is-button'" class="buttons">
+              <a class="button" [ngClass]="elementStyleModel.getValue(navbarItem.type)">
+                {{navbarItem.itemName}}
+              </a>
+            </div>
+            <div *ngSwitchCase="'has-dropdown'" class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                {{navbarItem.itemName}}
+              </a>
+              <div class="navbar-dropdown">
+                <div *ngFor="let dropdown of navbarItem.dropdowns">
+                  <a *ngIf="elementTypeModel.getValue(dropdown.type) !== 'is-divider'" [href]="[dropdown.itemRef]" class="navbar-item">
+                    {{dropdown.itemName}}
+                  </a>
+                  <hr *ngIf="elementTypeModel.getValue(dropdown.type) === 'is-divider'" class="navbar-divider">
+                </div>
+              </div>
+            </div>
+            <div *ngSwitchDefault>
+              <a [href]="[navbarItem.itemRef]" class="navbar-item">
+                {{navbarItem.itemName}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div *ngFor="let navbarItem of headerConfig.navBarRight" class="navbar-item">
+        <div [ngSwitch]="elementTypeModel.getValue(navbarItem.type)">
+          <div *ngSwitchCase="'is-button'" class="buttons">
+            <a class="button" [ngClass]="elementStyleModel.getValue(navbarItem.type)">
+              {{navbarItem.itemName}}
+            </a>
+          </div>
+          <div *ngSwitchCase="'has-dropdown'" class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              {{navbarItem.itemName}}
+            </a>
+            <div class="navbar-dropdown">
+              <div *ngFor="let dropdown of navbarItem.dropdowns">
+                <a *ngIf="elementTypeModel.getValue(dropdown.type) !== 'is-divider'" [href]="[dropdown.itemRef]" class="navbar-item">
+                  {{dropdown.itemName}}
+                </a>
+                <hr *ngIf="elementTypeModel.getValue(dropdown.type) === 'is-divider'" class="navbar-divider">
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchDefault>
+            <a [href]="[navbarItem.itemRef]" class="navbar-item">
+              {{navbarItem.itemName}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero" [ngClass]="[elementStyleModel.getValue(headerConfig.style)]">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{headerConfig.title}}
+      </h1>
+      <h2 class="subtitle">
+        {{headerConfig.subtitle}}
+      </h2>
+    </div>
+  </div>
+</section>

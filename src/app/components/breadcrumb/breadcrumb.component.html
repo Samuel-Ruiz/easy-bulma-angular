@@ -1,0 +1,18 @@
+<nav #breadcrumbNav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li *ngFor="let breadcrumb of inactiveBreadCrumbs">
+      <a [routerLink]="[breadcrumb.url]" routerLinkActive="active">
+        <span *ngIf="breadcrumb.icon" class="icon is-small">
+          <i [ngClass]="breadcrumb.icon" aria-hidden="true"></i>
+        </span>{{ breadcrumb.label }}
+      </a>
+    </li>
+    <li *ngIf="activeBreadcrumb" class="is-active">&nbsp;
+      &nbsp;
+      <span *ngIf="activeBreadcrumb.icon" class="icon is-small">
+          <i [ngClass]="activeBreadcrumb.icon" aria-hidden="true"></i>
+      </span>
+      {{ activeBreadcrumb.label }}
+    </li>
+  </ul>
+</nav>
