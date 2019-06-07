@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 export { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 export { AppRoutingModule } from '../app-routing.module';
+import {ContainerComponent} from './container/container.component';
+export {ContainerComponent} from './container/container.component';
 import { NotificationService } from '../services/notification.service';
 export { NotificationService } from '../services/notification.service';
 
@@ -21,6 +23,7 @@ export { NotificationService } from '../services/notification.service';
     NotificationComponent,
     HeaderComponent,
     FooterComponent,
+    ContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ export { NotificationService } from '../services/notification.service';
     HeaderComponent,
     BreadcrumbComponent,
     NotificationComponent,
+    ContainerComponent,
     FormsModule,
   ],
 })

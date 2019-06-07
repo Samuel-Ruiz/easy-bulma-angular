@@ -14,12 +14,11 @@ export class HeaderComponent implements OnInit {
   elementTypeModel: ElementTypeModel = new ElementTypeModel();
   elementStyleModel: ElementStyleModel = new ElementStyleModel();
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {}
 
-  setHeaderConfig(headerModel: HeaderModel) {
+  setConfig(headerModel: HeaderModel) {
     this.headerConfig = headerModel;
   }
 }

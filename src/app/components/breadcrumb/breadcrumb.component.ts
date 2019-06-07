@@ -38,7 +38,7 @@ export class BreadcrumbComponent implements OnInit {
     });
   }
 
-  setBreadcrumbConfig(breadcrumb: BreadcrumbModel) {
+  setConfig(breadcrumb: BreadcrumbModel) {
     this.breadcrumbConfig = breadcrumb;
     if (this.elementSize.getValue(this.breadcrumbConfig.size) !== '') {
       this.breadcrumbNav.nativeElement.classList.add(this.elementSize.getValue(this.breadcrumbConfig.size));
