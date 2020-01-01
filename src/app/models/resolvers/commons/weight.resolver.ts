@@ -1,5 +1,5 @@
 
-export class ElementWeightModel {
+export class WeightResolver {
 
   constructor() {}
 

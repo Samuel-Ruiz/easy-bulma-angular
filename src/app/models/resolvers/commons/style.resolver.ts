@@ -1,5 +1,5 @@
 
-export class ElementStyleModel {
+export class StyleResolver {
 
   constructor() {}
 

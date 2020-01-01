@@ -1,5 +1,5 @@
 
-export class ElementSizeModel {
+export class SizeResolver {
 
   constructor() {}
 

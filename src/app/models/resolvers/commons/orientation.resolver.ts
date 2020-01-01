@@ -1,5 +1,5 @@
 
-export class ElementOrientationModel {
+export class OrientationResolver {
 
   constructor() {}
 

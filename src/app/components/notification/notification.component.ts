@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '../../services/notification.service';
 import {timer} from 'rxjs';
-import {ElementStyleModel} from '../../models/commons/elementStyle.model';
+import {StyleResolver} from '../../models/resolvers/commons/style.resolver';
 
 @Component({
   selector: 'eba-notification',
@@ -13,7 +13,7 @@ export class NotificationComponent implements OnInit {
   message: string;
   style: string;
   notification = false;
-  elementStyleModel: ElementStyleModel = new ElementStyleModel();
+  styleResolver: StyleResolver = new StyleResolver();
 
   constructor(private notify: NotificationService) {}
 
@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
      this.message = res;
    });
    this.notify.getStyle().subscribe( res => {
-     this.style = this.elementStyleModel.getValue(res);
+     this.style = this.styleResolver.getValue(res);
    });
    this.notify.getNotification().subscribe(res => {
      this.notification = res;

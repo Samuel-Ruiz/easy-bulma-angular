@@ -1,5 +1,7 @@
-<div class="container" [ngClass]="elementWeightModel.getValue(containerConfig.weight)">
-  <div class="notification">
-    <ng-content></ng-content>
+<section class="section">
+  <div class="container" [ngClass]="weightResolver.getValue(options)">
+    <div class="notification">
+      <ng-content></ng-content>
+    </div>
   </div>
-</div>
+</section>

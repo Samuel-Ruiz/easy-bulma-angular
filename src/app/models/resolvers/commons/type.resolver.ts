@@ -1,5 +1,5 @@
 
-export class ElementTypeModel {
+export class TypeResolver {
 
   constructor() {}
 

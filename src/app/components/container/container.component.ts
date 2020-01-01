@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ElementWeightModel} from '../../models/commons/elementWeight.model';
-import {ContainerModel} from '../../models/contatiner/container.model';
+import {WeightResolver} from '../../models/resolvers/commons/weight.resolver';
 
 @Component({
   selector: 'eba-container',
@@ -9,16 +8,10 @@ import {ContainerModel} from '../../models/contatiner/container.model';
 })
 export class ContainerComponent implements OnInit {
 
-  @Input() containerConfig: ContainerModel = new ContainerModel();
-  elementWeightModel: ElementWeightModel = new ElementWeightModel();
+  @Input() options: string;
+  weightResolver: WeightResolver = new WeightResolver();
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  setConfig(containerConfig: ContainerModel) {
-    this.containerConfig = containerConfig;
-  }
-
+  ngOnInit() {}
 }

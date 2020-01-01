@@ -15,6 +15,7 @@ export { AppRoutingModule } from '../app-routing.module';
 import {ContainerComponent} from './container/container.component';
 export {ContainerComponent} from './container/container.component';
 import { NotificationService } from '../services/notification.service';
+import { TableComponent } from './table/table.component';
 export { NotificationService } from '../services/notification.service';
 
 @NgModule({
@@ -24,6 +25,7 @@ export { NotificationService } from '../services/notification.service';
     HeaderComponent,
     FooterComponent,
     ContainerComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ export { NotificationService } from '../services/notification.service';
     NotificationComponent,
     ContainerComponent,
     FormsModule,
+    TableComponent,
   ],
 })
 export class BulmaComponentsModule {

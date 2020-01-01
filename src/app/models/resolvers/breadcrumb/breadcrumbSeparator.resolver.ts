@@ -1,5 +1,5 @@
 
-export class BreadcrumbSeparatorModel {
+export class BreadcrumbSeparatorResolver {
 
   constructor() {}
 

@@ -1,0 +1,25 @@
+<table #table class="table" [ngClass]="getModifiers()">
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers.headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(headers.alignment[headerIndex])">
+        <span *ngIf="positionResolver.isLeft(headers.icon[headerIndex].position)" class="icon is-small">
+          <i [ngClass]="headers.icon[headerIndex].icon" aria-hidden="true"></i>
+        </span>
+        {{header}}
+        <span *ngIf="positionResolver.isRight(headers.icon[headerIndex].position)" class="icon is-small">
+          <i [ngClass]="headers.icon[headerIndex].icon" aria-hidden="true"></i>
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let column of columns?.data; trackBy: trackByFn; let columnIndex = index"
+        (click)="isSelected(columnIndex);"
+        [class.is-selected]="columnIndex == rowSelected"
+        >
+      <td *ngFor="let field of getFields(column); trackBy: trackByFn;let rowIndex = index" [ngClass]="getElementStyle(rowIndex, columns)">
+        {{getFieldContent(field)}}
+      </td>
+    </tr>
+  </tbody>
+</table>

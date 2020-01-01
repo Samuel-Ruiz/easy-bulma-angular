@@ -2,10 +2,10 @@ import {Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {BreadCrumb} from './breadcrumb';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
-import {BreadcrumbModel} from '../../models/breadcrumb/breadcrumb.model';
-import {ElementOrientationModel} from '../../models/commons/elementOrientation.model';
-import {ElementSizeModel} from '../../models/commons/elementSize.model';
-import {BreadcrumbSeparatorModel} from '../../models/breadcrumb/breadcrumbSeparator.model';
+import {BreadcrumbModel} from '../../models/components/breadcrumb/breadcrumb.model';
+import {OrientationResolver} from '../../models/resolvers/commons/orientation.resolver';
+import {SizeResolver} from '../../models/resolvers/commons/size.resolver';
+import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/breadcrumbSeparator.resolver';
 
 @Component({
   selector: 'eba-breadcrumb',
@@ -15,17 +15,19 @@ import {BreadcrumbSeparatorModel} from '../../models/breadcrumb/breadcrumbSepara
 })
 export class BreadcrumbComponent implements OnInit {
 
-  @Input() breadcrumbConfig: BreadcrumbModel = new BreadcrumbModel();
-  elementOrientation: ElementOrientationModel = new ElementOrientationModel();
-  elementSize: ElementSizeModel = new ElementSizeModel();
-  breadcrumbSeparator: BreadcrumbSeparatorModel = new BreadcrumbSeparatorModel();
+  @Input() options: BreadcrumbModel = new BreadcrumbModel();
+
+  orientationResolver: OrientationResolver = new OrientationResolver();
+  sizeResolver: SizeResolver = new SizeResolver();
+  breadcrumbSeparator: BreadcrumbSeparatorResolver = new BreadcrumbSeparatorResolver();
+
   inactiveBreadCrumbs: BreadCrumb[] = null;
   activeBreadcrumb: BreadCrumb = null;
+
   @ViewChild('breadcrumbNav') breadcrumbNav: ElementRef;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router) {
-  }
+              private router: Router) {}
 
   ngOnInit() {
     this.router.events.pipe(
@@ -39,15 +41,15 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   setConfig(breadcrumb: BreadcrumbModel) {
-    this.breadcrumbConfig = breadcrumb;
-    if (this.elementSize.getValue(this.breadcrumbConfig.size) !== '') {
-      this.breadcrumbNav.nativeElement.classList.add(this.elementSize.getValue(this.breadcrumbConfig.size));
+    this.options = breadcrumb;
+    if (this.sizeResolver.getValue(this.options.size) !== '') {
+      this.breadcrumbNav.nativeElement.classList.add(this.sizeResolver.getValue(this.options.size));
     }
-    if (this.breadcrumbSeparator.getValue(this.breadcrumbConfig.separator) !== '') {
-      this.breadcrumbNav.nativeElement.classList.add(this.breadcrumbSeparator.getValue(this.breadcrumbConfig.separator));
+    if (this.breadcrumbSeparator.getValue(this.options.separator) !== '') {
+      this.breadcrumbNav.nativeElement.classList.add(this.breadcrumbSeparator.getValue(this.options.separator));
     }
-    if (this.elementOrientation.getValue(this.breadcrumbConfig.orientation) !== '') {
-      this.breadcrumbNav.nativeElement.classList.add(this.elementOrientation.getValue(this.breadcrumbConfig.orientation));
+    if (this.orientationResolver.getValue(this.options.orientation) !== '') {
+      this.breadcrumbNav.nativeElement.classList.add(this.orientationResolver.getValue(this.options.orientation));
     }
   }
 
@@ -63,8 +65,8 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private setParamsWithDefault(route: ActivatedRoute, url: string = '') {
-    const defaultLabel = this.breadcrumbConfig.rootName ? this.breadcrumbConfig.rootName : 'Home';
-    const defaultPath = this.breadcrumbConfig.rootUrl ? this.breadcrumbConfig.rootUrl : '';
+    const defaultLabel = this.options.rootName ? this.options.rootName : 'Home';
+    const defaultPath = this.options.rootUrl ? this.options.rootUrl : '';
     const label = route.routeConfig ? route.routeConfig.data.breadcrumb : defaultLabel;
     const path = route.routeConfig ? route.routeConfig.path : defaultPath;
     const icon = route.routeConfig ? route.routeConfig.data.icon : '';

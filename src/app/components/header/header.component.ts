@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {HeaderModel} from '../../models/header/header.model';
-import {ElementTypeModel} from '../../models/commons/elementType.model';
-import {ElementStyleModel} from '../../models/commons/elementStyle.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {HeaderModel} from '../../models/components/header/header.model';
+import {TypeResolver} from '../../models/resolvers/commons/type.resolver';
+import {StyleResolver} from '../../models/resolvers/commons/style.resolver';
 
 @Component({
   selector: 'eba-header',
@@ -11,14 +11,14 @@ import {ElementStyleModel} from '../../models/commons/elementStyle.model';
 export class HeaderComponent implements OnInit {
   @Input() toggleNav = false;
   @Input() headerConfig: HeaderModel = new HeaderModel();
-  elementTypeModel: ElementTypeModel = new ElementTypeModel();
-  elementStyleModel: ElementStyleModel = new ElementStyleModel();
+  typeResolver: TypeResolver = new TypeResolver();
+  styleResolver: StyleResolver = new StyleResolver();
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  setConfig(headerModel: HeaderModel) {
+  public setConfig(headerModel: HeaderModel) {
     this.headerConfig = headerModel;
   }
 }
