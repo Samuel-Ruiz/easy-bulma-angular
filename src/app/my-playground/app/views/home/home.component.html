@@ -1,0 +1,12 @@
+
+<div class="field">
+  <div class="control">
+    <input [(ngModel)]="message" class="input is-primary" type="text" placeholder="Primary input">
+  </div>
+  <div class="select">
+    <select [(ngModel)]="styleString">
+      <option *ngFor="let style of styleList" >{{style}}</option>
+    </select>
+  </div>
+</div>
+<button (click)="sendNotification()">Click</button>

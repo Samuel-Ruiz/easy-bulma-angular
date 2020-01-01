@@ -1,0 +1,27 @@
+<!-- HEADER -->
+<title>Playground</title>
+
+<eba-header #header></eba-header>
+
+<!-- BREADCRUMB -->
+<div class="container is-fluid">
+  <div class="notification">
+    <eba-breadcrumb #breadcrumb></eba-breadcrumb>
+  </div>
+</div>
+<div class="container is-fluid">
+  <div class="notification">
+    <!-- APP -->
+    <eba-pg-to-do></eba-pg-to-do>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div class="container is-fluid">
+  <div class="notification">
+    <!-- TOAST -->
+    <eba-notification></eba-notification>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<eba-footer></eba-footer>

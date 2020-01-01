@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PGAppComponent} from './playground/app/app.component';
+import {PGAppComponent} from './my-playground/app/app.component';
 
 @Component({
   selector: 'eba-root',
