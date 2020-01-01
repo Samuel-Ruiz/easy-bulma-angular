@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http';
 
 import {BreadcrumbComponent, BulmaComponentsModule} from './components/bulma-components.module';
-import {PGAppModule} from './playground/playground-components.module';
 
 
 @NgModule({
@@ -18,7 +17,6 @@ import {PGAppModule} from './playground/playground-components.module';
     FormsModule,
     CommonModule,
     AppRoutingModule,
-    PGAppModule,
     BulmaComponentsModule],
   providers: [],
   bootstrap: [AppComponent],
