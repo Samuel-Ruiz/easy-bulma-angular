@@ -10,8 +10,7 @@ import { HeaderComponent } from './header/header.component';
 export { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 export { FooterComponent } from './footer/footer.component';
-import { AppRoutingModule } from '../app-routing.module';
-export { AppRoutingModule } from '../app-routing.module';
+import { BulmaRoutingModule } from '../bulma-routing.module';
 import {ContainerComponent} from './container/container.component';
 export {ContainerComponent} from './container/container.component';
 import { NotificationService } from '../services/notification.service';
@@ -30,7 +29,7 @@ export { NotificationService } from '../services/notification.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
+    BulmaRoutingModule,
   ],
   exports: [
     FooterComponent,
