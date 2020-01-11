@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {PGTableComponent} from './views/table/table.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {PGHomeContainerComponent} from './views/home/playground.component';
 import {PGToDoContainerComponent} from './views/to-do/playground.component';
 import {PGTableContainerComponent} from './views/table/playground.component';
+import {PGBlogContainerComponent} from './views/blog/playground.component';
+import {PGBlogModule} from './views/blog/playground-blog-components.module';
+import {PGExplorerModule} from './views/explorer/playground-explorer-components.module';
+import {PGExplorerContainerComponent} from './views/explorer/playground.component';
 
 const routes: Routes = [
   {
@@ -17,11 +20,18 @@ const routes: Routes = [
   },
   {
     path: 'playground/todo', component: PGToDoContainerComponent, data: {breadcrumb: 'ToDo'},
+  },
+  {
+    path: 'playground/blog', component: PGBlogContainerComponent, loadChildren: () => PGBlogModule,
+  },
+  {
+    path: 'playground/explorer', component: PGExplorerContainerComponent, loadChildren: () => PGExplorerModule,
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PGRoutingModule { }
+export class PGRoutingModule {
+}

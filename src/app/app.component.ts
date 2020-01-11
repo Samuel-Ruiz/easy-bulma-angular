@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PGAppComponent} from './my-playground/app/app.component';
 
 @Component({
   selector: 'eba-root',
@@ -7,9 +6,7 @@ import {PGAppComponent} from './my-playground/app/app.component';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  constructor() {
-    console.log('--- HOLA ---');
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

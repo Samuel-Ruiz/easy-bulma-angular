@@ -2,12 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BreadcrumbComponent} from '../../../../components/breadcrumb/breadcrumb.component';
 import {HeaderBasicComponent} from '../../../../components/header/header-basic/header-basic.component';
 
+
 @Component({
-  selector: 'eba-pg-to-do-container',
+  selector: 'eba-pg-blog-container',
   templateUrl: './playground.component.html',
   styleUrls: ['./playground.component.sass']
 })
-export class PGToDoContainerComponent implements OnInit {
+export class PGBlogContainerComponent implements OnInit {
   title = 'playground';
   @ViewChild('breadcrumb') breadcrumb: BreadcrumbComponent;
   @ViewChild('header') header: HeaderBasicComponent;
@@ -15,8 +16,9 @@ export class PGToDoContainerComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('--- Loading eba-pg-to-do-container ---');
+    console.log('--- Loading eba-pg-blog-container ---');
     this.header.setConfig({
+      component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',
@@ -25,15 +27,18 @@ export class PGToDoContainerComponent implements OnInit {
       navBarLeft: [
         {
           itemName: 'Home',
-          itemRef: '/playground/home',
+          itemRef: '/playground/blog/home',
         },
         {
-          itemName: 'ToDo',
-          itemRef: '/playground/todo',
+          itemName: 'Recipes',
+          itemRef: '/playground/blog/recipes',
+        },        {
+          itemName: 'Events',
+          itemRef: '/playground/blog/events',
         },
         {
-          itemName: 'Table',
-          itemRef: '/playground/table',
+          itemName: 'About',
+          itemRef: '/playground/blog/about',
         },
       ],
       navBarRight: [
@@ -45,6 +50,8 @@ export class PGToDoContainerComponent implements OnInit {
       ]
     });
     this.breadcrumb.setConfig({
+      // TODO orientation!! or aligment?
+      orientation: 'centered',
       size: 'large',
       separator: 'bullet',
     });

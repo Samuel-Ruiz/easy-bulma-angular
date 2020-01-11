@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BreadcrumbComponent} from '../../../../components/breadcrumb/breadcrumb.component';
-import {HeaderComponent} from '../../../../components/header/header.component';
+import {HeaderBasicComponent} from '../../../../components/header/header-basic/header-basic.component';
 
 @Component({
   selector: 'eba-pg-table-container',
@@ -10,7 +10,7 @@ import {HeaderComponent} from '../../../../components/header/header.component';
 export class PGTableContainerComponent implements OnInit {
   title = 'playground';
   @ViewChild('breadcrumb') breadcrumb: BreadcrumbComponent;
-  @ViewChild('header') header: HeaderComponent;
+  @ViewChild('header') header: HeaderBasicComponent;
 
   constructor() {}
 

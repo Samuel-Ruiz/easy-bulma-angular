@@ -3,6 +3,7 @@ import {Optional} from '@angular/core';
 
 
 export class HeaderModel {
+  @Optional() public component?: string;
   @Optional() public navBarLeft?: NavbarItemModel[];
   @Optional() public navBarRight?: NavbarItemModel[];
   @Optional() public title?: string;
