@@ -5,12 +5,11 @@ import {StyleResolver} from '../../../models/resolvers/commons/style.resolver';
 import {EbaComponentInterface} from '../../interfaces/eba-component.interface';
 
 @Component({
-  selector: 'eba-header-basic',
-  templateUrl: './header-basic.component.html',
-  styleUrls: ['./header-basic.component.sass']
+  selector: 'eba-header-blog',
+  templateUrl: './header-blog.component.html',
+  styleUrls: ['./header-blog.component.sass']
 })
-export class HeaderBasicComponent implements EbaComponentInterface, OnInit {
-
+export class HeaderBlogComponent implements EbaComponentInterface, OnInit {
   @Input() toggleNav = false;
   @Input() headerConfig: HeaderModel = new HeaderModel();
   typeResolver: TypeResolver = new TypeResolver();
@@ -26,11 +25,11 @@ export class HeaderBasicComponent implements EbaComponentInterface, OnInit {
     this.headerConfig = headerModel;
   }
 
-  public getName(): string {
-    return 'basic';
+  getName(): string {
+    return 'blog';
   }
 
-  public getChildren() {
+  getChildren() {
     return null;
   }
 }

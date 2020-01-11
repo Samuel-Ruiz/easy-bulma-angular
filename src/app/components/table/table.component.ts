@@ -5,13 +5,14 @@ import {TableDataModel} from '../../models/components/table/table-data.model';
 import {AlignmentResolver} from '../../models/resolvers/commons/alignment.resolver';
 import {TableHeaderModel} from '../../models/components/table/table-header.model';
 import {RelativePositionResolver} from '../../models/resolvers/commons/relative-position.resolver';
+import {EbaComponentInterface} from '../interfaces/eba-component.interface';
 
 @Component({
   selector: 'eba-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.sass']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements EbaComponentInterface, OnInit {
   @Input() selected = false;
   @Input() tableConfig: TableModel = new TableModel();
   tableModifier: TableModifierResolver = new TableModifierResolver();
@@ -29,6 +30,14 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public getName(): string {
+    return 'table';
+  }
+
+  public getChildren() {
+    return null;
   }
 
   public setConfig(tableConfig: TableModel) {

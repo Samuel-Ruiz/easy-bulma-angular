@@ -6,6 +6,8 @@ import {BreadcrumbModel} from '../../models/components/breadcrumb/breadcrumb.mod
 import {OrientationResolver} from '../../models/resolvers/commons/orientation.resolver';
 import {SizeResolver} from '../../models/resolvers/commons/size.resolver';
 import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/breadcrumbSeparator.resolver';
+import {EbaFactoryInterface} from '../interfaces/eba-factory.interface';
+import {EbaComponentInterface} from '../interfaces/eba-component.interface';
 
 @Component({
   selector: 'eba-breadcrumb',
@@ -13,7 +15,7 @@ import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/bre
   styleUrls: ['./breadcrumb.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent implements EbaComponentInterface, OnInit {
 
   @Input() options: BreadcrumbModel = new BreadcrumbModel();
 
@@ -77,5 +79,13 @@ export class BreadcrumbComponent implements OnInit {
       url: nextUrl,
       icon,
     };
+  }
+
+  getName(): string {
+    return 'breadcrumb';
+  }
+
+  getChildren() {
+    return null;
   }
 }

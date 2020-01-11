@@ -1,0 +1,18 @@
+
+<div class="field">
+  <div class="control">
+    <label>
+      <input [(ngModel)]="message" class="input is-primary" type="text" placeholder="Primary input">
+    </label>
+  </div>
+  <div class="select">
+    <label>
+      <select [(ngModel)]="styleString">
+        <option *ngFor="let style of styleList" >{{style}}</option>
+      </select>
+    </label>
+  </div>
+</div>
+<button (click)="sendNotification()">Click</button>
+
+<eba-header #header></eba-header>
