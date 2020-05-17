@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ComponentFactoryResolver,
-  ComponentRef,
-  Input,
-  OnDestroy, OnInit,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import {Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, ViewChild} from '@angular/core';
 import {HeaderModel} from '../../models/components/header/header.model';
 import {HeaderFactory} from './header-factory';
 import {HeaderShop} from './header-shop';

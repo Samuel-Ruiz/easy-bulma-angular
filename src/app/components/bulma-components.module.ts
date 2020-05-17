@@ -1,55 +1,48 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { NotificationComponent } from './notification/notification.component';
-export { NotificationComponent } from './notification/notification.component';
-import { HeaderBasicComponent } from './header/header-basic/header-basic.component';
-export { HeaderBasicComponent } from './header/header-basic/header-basic.component';
-import { FooterComponent } from './footer/footer.component';
-export { FooterComponent } from './footer/footer.component';
-
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {NotificationComponent} from './notification/notification.component';
+import {FooterComponent} from './footer/footer.component';
 import {ContainerComponent} from './container/container.component';
-export {ContainerComponent} from './container/container.component';
-import { NotificationService } from '../services/notification.service';
-import { TableComponent } from './table/table.component';
-import { HeaderBlogComponent } from './header/header-blog/header-blog.component';
+import {NotificationService} from '../services/notification.service';
+import {TableComponent} from './table/table.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './header/header.component';
-import {HeaderDirective} from './header/header.directive';
+import {HeaderModule} from './header/header.module';
+
+export {HeaderModule} from './header/header.module';
+
+export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+export { NotificationComponent } from './notification/notification.component';
+export { FooterComponent } from './footer/footer.component';
+
+export {ContainerComponent} from './container/container.component';
 export { NotificationService } from '../services/notification.service';
 
 @NgModule({
   declarations: [
     BreadcrumbComponent,
     NotificationComponent,
-    HeaderBasicComponent,
     FooterComponent,
     ContainerComponent,
     TableComponent,
-    HeaderBlogComponent,
-    HeaderComponent,
-    HeaderDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
+    HeaderModule
   ],
   exports: [
+    HeaderModule,
     FooterComponent,
-    HeaderComponent,
-    HeaderBasicComponent,
     BreadcrumbComponent,
     NotificationComponent,
     ContainerComponent,
     FormsModule,
     TableComponent,
-    HeaderBlogComponent,
   ],
-  entryComponents: [ HeaderBlogComponent, HeaderBasicComponent ],
 })
 export class BulmaComponentsModule {
   static forRoot(): ModuleWithProviders {

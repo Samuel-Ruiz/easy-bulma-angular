@@ -1,6 +1,6 @@
 import {PGContainerComponent} from './app/app.component';
 import {PGHomeComponent} from './app/views/home/home.component';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {PGRoutingModule} from './app/playground-routing.module';
@@ -35,7 +35,8 @@ import {PGExplorerModule} from './app/views/explorer/playground-explorer-compone
     PGBlogModule,
     PGExplorerModule
   ],
-  exports: []
+  exports: [],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class PGAppModule {
 }

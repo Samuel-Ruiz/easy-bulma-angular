@@ -28,7 +28,7 @@ export class PGExplorerHomeComponent implements OnInit {
       return item.label === 'header';
     }).children.getLabels();
 
-    this.header.setConfig({
+    this.header.refresh({
       component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
@@ -60,8 +60,6 @@ export class PGExplorerHomeComponent implements OnInit {
         }
       ]
     });
-    this.header.publish();
-
   }
 
   sendNotification() {
