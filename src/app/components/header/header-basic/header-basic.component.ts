@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {HeaderModel} from '../../../models/components/header/header.model';
 import {TypeResolver} from '../../../models/resolvers/commons/type.resolver';
 import {StyleResolver} from '../../../models/resolvers/commons/style.resolver';
@@ -9,7 +9,7 @@ import {EbaComponentInterface} from '../../interfaces/eba-component.interface';
   templateUrl: './header-basic.component.html',
   styleUrls: ['./header-basic.component.sass']
 })
-export class HeaderBasicComponent implements EbaComponentInterface, OnInit {
+export class HeaderBasicComponent implements EbaComponentInterface {
 
   @Input() toggleNav = false;
   @Input() headerConfig: HeaderModel = new HeaderModel();
@@ -17,9 +17,6 @@ export class HeaderBasicComponent implements EbaComponentInterface, OnInit {
   styleResolver: StyleResolver = new StyleResolver();
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
   public setConfig(headerModel: HeaderModel) {

@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {BreadCrumb} from './breadcrumb';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
@@ -6,7 +6,6 @@ import {BreadcrumbModel} from '../../models/components/breadcrumb/breadcrumb.mod
 import {OrientationResolver} from '../../models/resolvers/commons/orientation.resolver';
 import {SizeResolver} from '../../models/resolvers/commons/size.resolver';
 import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/breadcrumbSeparator.resolver';
-import {EbaFactoryInterface} from '../interfaces/eba-factory.interface';
 import {EbaComponentInterface} from '../interfaces/eba-component.interface';
 
 @Component({
@@ -15,7 +14,7 @@ import {EbaComponentInterface} from '../interfaces/eba-component.interface';
   styleUrls: ['./breadcrumb.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
-export class BreadcrumbComponent implements EbaComponentInterface, OnInit {
+export class BreadcrumbComponent implements EbaComponentInterface, AfterContentInit {
 
   @Input() options: BreadcrumbModel = new BreadcrumbModel();
 
@@ -26,12 +25,12 @@ export class BreadcrumbComponent implements EbaComponentInterface, OnInit {
   inactiveBreadCrumbs: BreadCrumb[] = null;
   activeBreadcrumb: BreadCrumb = null;
 
-  @ViewChild('breadcrumbNav') breadcrumbNav: ElementRef;
+  @ViewChild('breadcrumbNav', { static: false }) breadcrumbNav: ElementRef;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router) {}
 
-  ngOnInit() {
+  ngAfterContentInit() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       distinctUntilChanged(),

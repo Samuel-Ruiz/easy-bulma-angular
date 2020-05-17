@@ -18,6 +18,7 @@ import { HeaderBlogComponent } from './header/header-blog/header-blog.component'
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header/header.component';
+import {HeaderDirective} from './header/header.directive';
 export { NotificationService } from '../services/notification.service';
 
 @NgModule({
@@ -29,7 +30,8 @@ export { NotificationService } from '../services/notification.service';
     ContainerComponent,
     TableComponent,
     HeaderBlogComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeaderDirective
   ],
   imports: [
     CommonModule,

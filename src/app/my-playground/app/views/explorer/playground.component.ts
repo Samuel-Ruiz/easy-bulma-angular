@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {BreadcrumbComponent} from '../../../../components/breadcrumb/breadcrumb.component';
-import {HeaderBasicComponent} from '../../../../components/header/header-basic/header-basic.component';
+import {HeaderComponent} from '../../../../components/header/header.component';
 
 
 @Component({
@@ -8,15 +8,16 @@ import {HeaderBasicComponent} from '../../../../components/header/header-basic/h
   templateUrl: './playground.component.html',
   styleUrls: ['./playground.component.sass']
 })
-export class PGExplorerContainerComponent implements OnInit {
+export class PGExplorerContainerComponent implements AfterViewInit {
   title = 'playground';
-  @ViewChild('breadcrumb') breadcrumb: BreadcrumbComponent;
-  @ViewChild('header') header: HeaderBasicComponent;
+  @ViewChild('breadcrumb', {static: false}) breadcrumb: BreadcrumbComponent;
+  @ViewChild('header', {static: false}) header: HeaderComponent;
 
   constructor() {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     console.log('--- Loading eba-pg-explorer-container ---');
+    console.log(this.header);
     this.header.setConfig({
       component: 'blog',
       title: 'My company',

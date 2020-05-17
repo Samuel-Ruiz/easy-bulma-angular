@@ -16,7 +16,7 @@ export class TableComponent implements EbaComponentInterface, OnInit {
   @Input() selected = false;
   @Input() tableConfig: TableModel = new TableModel();
   tableModifier: TableModifierResolver = new TableModifierResolver();
-  @ViewChild('table') table: ElementRef;
+  @ViewChild('table', {read: true, static: false}) table: ElementRef;
 
   positionResolver: RelativePositionResolver = new RelativePositionResolver();
   elementAlignment: AlignmentResolver = new AlignmentResolver();

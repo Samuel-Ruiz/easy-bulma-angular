@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NotificationService} from '../../../../../services/notification.service';
 import {HeaderComponent} from '../../../../../components/header/header.component';
 import {EbaShop} from '../../../../../components/eba-shop';
@@ -9,7 +9,7 @@ import {EbaShop} from '../../../../../components/eba-shop';
   styleUrls: ['./explorer-home.component.sass']
 })
 export class PGExplorerHomeComponent implements OnInit {
-  @ViewChild('header') header: HeaderComponent;
+  @ViewChild('header', {static: true}) header: HeaderComponent;
 
   message: string;
   styleString: string;
@@ -20,6 +20,8 @@ export class PGExplorerHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('--- Loading eba-pg-explorer-home ---');
+    console.log(this.header);
     this.styleList = EbaShop.getLabels();
 
     this.styleList = EbaShop.getItems().find(item => {
@@ -58,6 +60,8 @@ export class PGExplorerHomeComponent implements OnInit {
         }
       ]
     });
+    this.header.publish();
+
   }
 
   sendNotification() {

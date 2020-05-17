@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {HeaderModel} from '../../../models/components/header/header.model';
 import {TypeResolver} from '../../../models/resolvers/commons/type.resolver';
 import {StyleResolver} from '../../../models/resolvers/commons/style.resolver';
@@ -9,7 +9,7 @@ import {EbaComponentInterface} from '../../interfaces/eba-component.interface';
   templateUrl: './header-blog.component.html',
   styleUrls: ['./header-blog.component.sass']
 })
-export class HeaderBlogComponent implements EbaComponentInterface, OnInit {
+export class HeaderBlogComponent implements EbaComponentInterface, AfterViewInit {
   @Input() toggleNav = false;
   @Input() headerConfig: HeaderModel = new HeaderModel();
   typeResolver: TypeResolver = new TypeResolver();
@@ -18,7 +18,7 @@ export class HeaderBlogComponent implements EbaComponentInterface, OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
   }
 
   public setConfig(headerModel: HeaderModel) {

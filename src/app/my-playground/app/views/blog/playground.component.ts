@@ -10,8 +10,8 @@ import {HeaderBasicComponent} from '../../../../components/header/header-basic/h
 })
 export class PGBlogContainerComponent implements OnInit {
   title = 'playground';
-  @ViewChild('breadcrumb') breadcrumb: BreadcrumbComponent;
-  @ViewChild('header') header: HeaderBasicComponent;
+  @ViewChild('breadcrumb', {read: true, static: false}) breadcrumb: BreadcrumbComponent;
+  @ViewChild('header', {read: true, static: false}) header: HeaderBasicComponent;
 
   constructor() {}
 
