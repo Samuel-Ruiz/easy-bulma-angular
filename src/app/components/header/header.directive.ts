@@ -1,7 +1,7 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[ebaHeaderFactory]',
+  selector: '[ebaHeaderDirective]',
 })
 export class HeaderDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
