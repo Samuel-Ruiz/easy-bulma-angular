@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {HeaderDirective} from './header.directive';
 import {HeaderComponent} from './header.component';
 import {HeaderBasicComponent} from './header-basic/header-basic.component';

@@ -6,10 +6,10 @@ import {NotificationComponent} from './notification/notification.component';
 import {FooterComponent} from './footer/footer.component';
 import {ContainerComponent} from './container/container.component';
 import {NotificationService} from '../services/notification.service';
-import {TableComponent} from './table/table.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {HeaderModule} from './header/header.module';
+import {TableModule} from './table/table.module';
 
 export {HeaderModule} from './header/header.module';
 
@@ -26,13 +26,13 @@ export { NotificationService } from '../services/notification.service';
     NotificationComponent,
     FooterComponent,
     ContainerComponent,
-    TableComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    HeaderModule
+    HeaderModule,
+    TableModule
   ],
   exports: [
     HeaderModule,
@@ -41,7 +41,7 @@ export { NotificationService } from '../services/notification.service';
     NotificationComponent,
     ContainerComponent,
     FormsModule,
-    TableComponent,
+    TableModule,
   ],
 })
 export class BulmaComponentsModule {
