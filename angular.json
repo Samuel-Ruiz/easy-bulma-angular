@@ -29,7 +29,7 @@
             "styles": [
               "src/styles.sass"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/angular-calendar/css/angular-calendar.css"],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -171,5 +171,8 @@
       }
     }
   },
-  "defaultProject": "easy-bulma-angular"
+  "defaultProject": "easy-bulma-angular",
+  "cli": {
+    "analytics": "4c685f86-c349-4244-bbcb-b607408065ff"
+  }
 }

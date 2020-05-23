@@ -13,6 +13,7 @@ import {PGTableContainerComponent} from './app/views/table/playground.component'
 import {PGBlogModule} from './app/views/blog/playground-blog-components.module';
 import {CommonModule} from '@angular/common';
 import {PGExplorerModule} from './app/views/explorer/playground-explorer-components.module';
+import {CalendarModule} from 'angular-calendar';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {PGExplorerModule} from './app/views/explorer/playground-explorer-compone
   ],
   imports: [
     BulmaComponentsModule,
+    CalendarModule,
     HttpClientModule,
     CommonModule,
     PGRoutingModule,

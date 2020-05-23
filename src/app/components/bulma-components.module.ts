@@ -9,7 +9,9 @@ import {NotificationService} from '../services/notification.service';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {HeaderModule} from './header/header.module';
-import {TableModule} from './table/table.module';
+import {TableComponent} from './table/table.component';
+import {CalendarComponent} from './calendar/calendar.component';
+import {CalendarModule} from 'angular-calendar';
 
 export {HeaderModule} from './header/header.module';
 
@@ -26,22 +28,25 @@ export { NotificationService } from '../services/notification.service';
     NotificationComponent,
     FooterComponent,
     ContainerComponent,
+    TableComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
     HeaderModule,
-    TableModule
+    CalendarModule
   ],
   exports: [
     HeaderModule,
     FooterComponent,
+    TableComponent,
+    CalendarComponent,
     BreadcrumbComponent,
     NotificationComponent,
     ContainerComponent,
     FormsModule,
-    TableModule,
   ],
 })
 export class BulmaComponentsModule {

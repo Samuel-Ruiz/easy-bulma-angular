@@ -7,22 +7,30 @@ import {BreadcrumbComponent, BulmaComponentsModule} from './components/bulma-com
 import {PGAppModule} from './my-playground/playground-components.module';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     BrowserModule,
     PGAppModule,
     BulmaComponentsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [BulmaComponentsModule, BreadcrumbComponent],
+  exports: [BulmaComponentsModule, BreadcrumbComponent, CalendarModule],
 })
 export class AppModule { }

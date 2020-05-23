@@ -6,6 +6,7 @@ import {BulmaComponentsModule} from '../../../../components/bulma-components.mod
 import {PGExplorerContainerComponent} from './playground.component';
 import {PGExplorerRoutingModule} from './playground-explorer-routing.module';
 import {PGExplorerHomeComponent} from './explorer-home/explorer-home.component';
+import {CalendarDayModule, CalendarModule} from 'angular-calendar';
 
 
 @NgModule({
