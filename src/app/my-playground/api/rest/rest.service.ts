@@ -15,7 +15,7 @@ export class RestService {
   constructor(private http: HttpClient) { }
 
   // End point of the backend server
-  private endpoint = 'https://jsonplaceholder.typicode.com/';
+  private endpoint = 'http://jsonplaceholder.typicode.com/';
 
   // Http Options
   private httpOptions = {
@@ -28,7 +28,7 @@ export class RestService {
    *   Gets the total number of courses
    */
   getComments(): Observable<any> {
-    return this.http.get(this.endpoint + 'comments');
+    return this.http.get(this.endpoint + 'posts');
 }
 
   /**

@@ -1,13 +1,15 @@
 import {Optional} from '@angular/core';
-import {TableDataModel} from './table-data.model';
+import {TableColumnModel} from './table-column.model';
+import {AbstractModel} from '../../intefaces/abstract.model';
+import {TableHeaderModel} from './table-header.model';
 
 
-export class TableModel {
+export class TableModel implements AbstractModel {
 
-  @Optional() public headers?: TableDataModel;
-  @Optional() public columns?: TableDataModel;
+  @Optional() public headers?: TableHeaderModel;
+  @Optional() public columns?: TableColumnModel;
   @Optional() public modifier?: string[];
+  @Optional() id: string;
 
   constructor() {}
-
 }

@@ -1,23 +1,23 @@
 <table #table class="table" [ngClass]="getModifiers()">
   <thead>
     <tr>
-      <th *ngFor="let header of headers.headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(headers.alignment[headerIndex])">
-        <span *ngIf="positionResolver.isLeft(headers.icon[headerIndex].position)" class="icon is-small">
+      <th *ngFor="let header of tableConfig.headers?.headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(tableConfig.headers?.alignment[headerIndex])">
+        <span *ngIf="positionResolver.isLeft(tableConfig.headers.icon[headerIndex]?.position)" class="icon is-small">
           <i [ngClass]="headers.icon[headerIndex].icon" aria-hidden="true"></i>
         </span>
         {{header}}
-        <span *ngIf="positionResolver.isRight(headers.icon[headerIndex].position)" class="icon is-small">
-          <i [ngClass]="headers.icon[headerIndex].icon" aria-hidden="true"></i>
+        <span *ngIf="positionResolver.isRight(tableConfig.headers?.icon[headerIndex]?.position)" class="icon is-small">
+          <i [ngClass]="tableConfig.headers?.icon[headerIndex]?.icon" aria-hidden="true"></i>
         </span>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let column of columns?.data; trackBy: trackByFn; let columnIndex = index"
+    <tr *ngFor="let column of this.tableConfig.columns?.rows; trackBy: trackByFn; let columnIndex = index"
         (click)="isSelected(columnIndex);"
         [class.is-selected]="columnIndex == rowSelected"
         >
-      <td *ngFor="let field of getFields(column); trackBy: trackByFn;let rowIndex = index" [ngClass]="getElementStyle(rowIndex, columns)">
+      <td *ngFor="let field of getFields(column); trackBy: trackByFn;let rowIndex = index" [ngClass]="getElementStyle(rowIndex,  tableConfig.columns)">
         {{getFieldContent(field)}}
       </td>
     </tr>

@@ -45,9 +45,6 @@ export class HeaderComponent implements EbaComponentInterface, OnDestroy {
     return HeaderShop;
   }
 
-  valueChange($event){
-  }
-
   private setContainerConfig() {
     this.container.viewContainerRef.clear();
     console.log(this.factory);

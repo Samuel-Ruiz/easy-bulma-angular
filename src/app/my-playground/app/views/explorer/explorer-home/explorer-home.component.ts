@@ -1,7 +1,9 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NotificationService} from '../../../../../services/notification.service';
 import {HeaderComponent} from '../../../../../components/header/header.component';
 import {EbaShop} from '../../../../../components/eba-shop';
+import {TableComponent} from '../../../../../components/table/table.component';
+import {RestService} from '../../../../api/rest/rest.service';
 
 @Component({
   selector: 'eba-pg-explorer-home',
@@ -10,12 +12,13 @@ import {EbaShop} from '../../../../../components/eba-shop';
 })
 export class PGExplorerHomeComponent implements OnInit {
   @ViewChild('header', {static: true}) header: HeaderComponent;
+  @ViewChild('table', {static: true}) table: TableComponent;
 
   message: string;
   styleString: string;
   styleList: string[];
 
-  constructor(private notify: NotificationService) {
+  constructor(private restApi: RestService, private notify: NotificationService) {
     this.styleList = ['isPrimary', 'isDanger', 'isDark', 'isLink', 'isInfo', 'isSuccess', 'isWarning'];
   }
 
@@ -60,6 +63,8 @@ export class PGExplorerHomeComponent implements OnInit {
         }
       ]
     });
+
+    this.configTable();
   }
 
   sendNotification() {
@@ -101,5 +106,25 @@ export class PGExplorerHomeComponent implements OnInit {
   buildMessage(): string {
     this.message = 'The selected style is [' + this.styleString + ']';
     return this.message;
+  }
+
+  private configTable() {
+    const header = ['id', 'title'];
+    const columnsData = ['id', 'title'];
+    this.restApi.getComments().subscribe(response => {
+      this.table.setConfig({
+        id: 'table',
+        columns: {
+          displayedColumns: columnsData,
+          rows: response,
+          alignment: [''],
+        },
+        headers: {
+          headers: header,
+          alignment: [''],
+          icon: []
+        },
+      });
+    });
   }
 }
