@@ -1,6 +1,8 @@
 export class TableRowModel {
 
-  public data: string;
+  public displayedColumns: string[];
+  public rows: object[];
+  public alignment: string[];
 
   constructor() {
   }

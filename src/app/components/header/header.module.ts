@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {HeaderDirective} from './header.directive';
 import {HeaderComponent} from './header.component';
 import {HeaderBasicComponent} from './header-basic/header-basic.component';
 import {HeaderBlogComponent} from './header-blog/header-blog.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {FactoryModule} from '../factory/factory.module';
 
 
 @NgModule({
@@ -12,11 +12,11 @@ import {FormsModule} from '@angular/forms';
     HeaderBasicComponent,
     HeaderBlogComponent,
     HeaderComponent,
-    HeaderDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
+    FactoryModule
   ],
   exports: [
     HeaderComponent,

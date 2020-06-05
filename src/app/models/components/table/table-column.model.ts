@@ -1,9 +1,11 @@
+import {TableHeaderModel} from './table-header.model';
 
 export class TableColumnModel {
 
-  public displayedColumns: string[];
-  public rows: object[];
-  public alignment: string[];
+  public header: TableHeaderModel;
+  public alignment: string;
+  public entryName: string;
 
-  constructor() {}
+  constructor() {
+  }
 }

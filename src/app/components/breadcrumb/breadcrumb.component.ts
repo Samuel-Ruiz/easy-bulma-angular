@@ -6,7 +6,7 @@ import {BreadcrumbModel} from '../../models/components/breadcrumb/breadcrumb.mod
 import {OrientationResolver} from '../../models/resolvers/commons/orientation.resolver';
 import {SizeResolver} from '../../models/resolvers/commons/size.resolver';
 import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/breadcrumbSeparator.resolver';
-import {EbaComponentInterface} from '../interfaces/eba-component.interface';
+import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
 
 @Component({
   selector: 'eba-breadcrumb',
@@ -14,7 +14,7 @@ import {EbaComponentInterface} from '../interfaces/eba-component.interface';
   styleUrls: ['./breadcrumb.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
-export class BreadcrumbComponent implements EbaComponentInterface, AfterContentInit {
+export class BreadcrumbComponent implements AbstractEbaComponent, AfterContentInit {
 
   @Input() options: BreadcrumbModel = new BreadcrumbModel();
 
@@ -41,7 +41,7 @@ export class BreadcrumbComponent implements EbaComponentInterface, AfterContentI
     });
   }
 
-  setConfig(breadcrumb: BreadcrumbModel) {
+  setParams(breadcrumb: BreadcrumbModel) {
     this.options = breadcrumb;
     if (this.sizeResolver.getValue(this.options.size) !== '') {
       this.breadcrumbNav.nativeElement.classList.add(this.sizeResolver.getValue(this.options.size));

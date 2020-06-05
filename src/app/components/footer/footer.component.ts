@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {EbaComponentInterface} from '../interfaces/eba-component.interface';
+import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
 
 @Component({
   selector: 'eba-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.sass']
 })
-export class FooterComponent implements EbaComponentInterface, OnInit {
+export class FooterComponent implements AbstractEbaComponent, OnInit {
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class FooterComponent implements EbaComponentInterface, OnInit {
     return 'footer';
   }
 
-  setConfig(config: any) {
+  setParams(config: any) {
   }
 
   getChildren() {

@@ -1,11 +1,11 @@
-<section class="hero" [ngClass]="[styleResolver.getValue(headerConfig.style)]">
+<section class="hero" [ngClass]="[styleResolver.getValue(model.style)]">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        {{headerConfig.title}}
+        {{model.title}}
       </h1>
       <h2 class="subtitle">
-        {{headerConfig.subtitle}}
+        {{model.subtitle}}
       </h2>
     </div>
   </div>
@@ -13,8 +13,8 @@
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a  *ngIf="headerConfig.brandImg" class="navbar-item" [href]="headerConfig.brandRef">
-      <img [src]="headerConfig.brandImg" alt="No IMG" width="112" height="28">
+    <a *ngIf="model.brandImg" class="navbar-item" [href]="model.brandRef">
+      <img [src]="model.brandImg" alt="No IMG" width="112" height="28">
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
@@ -27,7 +27,7 @@
 
   <div id="navbarHeader" class="navbar-menu" [ngClass]="{'is-active': toggleNav }">
     <div class="navbar-start">
-      <div *ngFor="let navbarItem of headerConfig.navBarLeft">
+      <div *ngFor="let navbarItem of model.navBarLeft">
         <div class="navbar-item">
           <div [ngSwitch]="typeResolver.getValue(navbarItem.type)">
             <div *ngSwitchCase="'is-button'" class="buttons">
@@ -59,7 +59,7 @@
     </div>
 
     <div class="navbar-end">
-      <div *ngFor="let navbarItem of headerConfig.navBarRight" class="navbar-item">
+      <div *ngFor="let navbarItem of model.navBarRight" class="navbar-item">
         <div [ngSwitch]="typeResolver.getValue(navbarItem.type)">
           <div *ngSwitchCase="'is-button'" class="buttons">
             <a class="button" [ngClass]="styleResolver.getValue(navbarItem.type)">

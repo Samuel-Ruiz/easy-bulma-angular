@@ -6,10 +6,10 @@ import {TableHeaderModel} from './table-header.model';
 
 export class TableModel implements AbstractModel {
 
-  @Optional() public headers?: TableHeaderModel;
-  @Optional() public columns?: TableColumnModel;
+  @Optional() public columns?: TableColumnModel[];
   @Optional() public modifier?: string[];
   @Optional() id: string;
+  @Optional() public data: object[];
 
   constructor() {}
 }

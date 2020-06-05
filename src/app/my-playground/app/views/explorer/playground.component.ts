@@ -10,15 +10,16 @@ import {HeaderComponent} from '../../../../components/header/header.component';
 })
 export class PGExplorerContainerComponent implements AfterViewInit {
   title = 'playground';
-  @ViewChild('breadcrumb', {static: false}) breadcrumb: BreadcrumbComponent;
-  @ViewChild('header', {static: false}) header: HeaderComponent;
+  @ViewChild('breadcrumb', {static: true}) breadcrumb: BreadcrumbComponent;
+  @ViewChild('header', {static: true}) header: HeaderComponent;
 
   constructor() {}
 
   ngAfterViewInit() {
     console.log('--- Loading eba-pg-explorer-container ---');
-    console.log(this.header);
-    this.header.setConfig({
+    // console.log(this.header);
+    /*
+    this.header.setParams({
       component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
@@ -50,8 +51,9 @@ export class PGExplorerContainerComponent implements AfterViewInit {
         }
       ]
     });
-    this.breadcrumb.setConfig({
-      // TODO orientation!! or aligment?
+     */
+    this.breadcrumb.setParams({
+      // TODO orientation!! or alignment?
       orientation: 'centered',
       size: 'large',
       separator: 'bullet',

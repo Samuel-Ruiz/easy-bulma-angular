@@ -1,24 +1,29 @@
 <table #table class="table" [ngClass]="getModifiers()">
   <thead>
     <tr>
-      <th *ngFor="let header of tableConfig.headers?.headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(tableConfig.headers?.alignment[headerIndex])">
-        <span *ngIf="positionResolver.isLeft(tableConfig.headers.icon[headerIndex]?.position)" class="icon is-small">
-          <i [ngClass]="headers.icon[headerIndex].icon" aria-hidden="true"></i>
+      <th *ngFor="let header of headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(header?.alignment)">
+        <span *ngIf="positionResolver.isLeft(header.icon?.position)" class="icon is-small">
+          <i [ngClass]="header.icon[headerIndex].icon" aria-hidden="true"></i>
         </span>
-        {{header}}
-        <span *ngIf="positionResolver.isRight(tableConfig.headers?.icon[headerIndex]?.position)" class="icon is-small">
-          <i [ngClass]="tableConfig.headers?.icon[headerIndex]?.icon" aria-hidden="true"></i>
+        {{header.header}}
+        <span *ngIf="positionResolver.isRight(header.icon?.position)" class="icon is-small">
+          <i [ngClass]="header.icon?.icon" aria-hidden="true"></i>
         </span>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let column of this.tableConfig.columns?.rows; trackBy: trackByFn; let columnIndex = index"
-        (click)="isSelected(columnIndex);"
-        [class.is-selected]="columnIndex == rowSelected"
+    <tr *ngFor="let row of rows; trackBy: trackByFn; let rowIndex = index"
+        (click)="isSelected(rowIndex);"
+        [class.is-selected]="rowIndex == rowSelected"
         >
-      <td *ngFor="let field of getFields(column); trackBy: trackByFn;let rowIndex = index" [ngClass]="getElementStyle(rowIndex,  tableConfig.columns)">
-        {{getFieldContent(field)}}
+      <td *ngFor="let field of getFields(row); trackBy: trackByFn;let columnIndex = index" [ngClass]="getElementStyle(columnIndex,  row)">
+        <div *ngIf="!isFieldAnObject(field)">
+          {{getFieldContent(field)}}
+        </div>
+        <div *ngIf="isFieldAnObject(field)">
+          <eba-factory-wrapper #factoryWrapper [factory]="factory" [components]="fieldComponentConfig(field)"></eba-factory-wrapper>
+        </div>
       </td>
     </tr>
   </tbody>

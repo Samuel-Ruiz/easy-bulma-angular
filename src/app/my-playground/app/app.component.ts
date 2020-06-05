@@ -16,7 +16,7 @@ export class PGContainerComponent implements OnInit {
 
   ngOnInit() {
     console.log('--- Loading playgroung ---');
-    this.header.setConfig({
+    this.header.setParams({
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',
@@ -44,7 +44,7 @@ export class PGContainerComponent implements OnInit {
         }
       ]
     });
-    this.breadcrumb.setConfig({
+    this.breadcrumb.setParams({
       size: 'large',
       separator: 'bullet',
     });

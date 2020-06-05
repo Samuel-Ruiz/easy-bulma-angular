@@ -2,25 +2,25 @@ import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {HeaderModel} from '../../../models/components/header/header.model';
 import {TypeResolver} from '../../../models/resolvers/commons/type.resolver';
 import {StyleResolver} from '../../../models/resolvers/commons/style.resolver';
-import {EbaComponentInterface} from '../../interfaces/eba-component.interface';
+import {AbstractEbaComponent} from '../../factory/interfaces/abstract-eba.component';
 
 @Component({
   selector: 'eba-header-basic',
   templateUrl: './header-basic.component.html',
   styleUrls: ['./header-basic.component.sass']
 })
-export class HeaderBasicComponent implements EbaComponentInterface {
+export class HeaderBasicComponent implements AbstractEbaComponent {
 
   @Input() toggleNav = false;
-  @Input() headerConfig: HeaderModel = new HeaderModel();
+  @Input() model: HeaderModel = new HeaderModel();
   typeResolver: TypeResolver = new TypeResolver();
   styleResolver: StyleResolver = new StyleResolver();
 
   constructor() {
   }
 
-  public setConfig(headerModel: HeaderModel) {
-    this.headerConfig = headerModel;
+  public setParams(headerModel: HeaderModel) {
+    this.model = headerModel;
   }
 
   public getName(): string {

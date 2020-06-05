@@ -17,7 +17,7 @@ export class PGBlogContainerComponent implements OnInit {
 
   ngOnInit() {
     console.log('--- Loading eba-pg-blog-container ---');
-    this.header.setConfig({
+    this.header.setParams({
       component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
@@ -49,8 +49,8 @@ export class PGBlogContainerComponent implements OnInit {
         }
       ]
     });
-    this.breadcrumb.setConfig({
-      // TODO orientation!! or aligment?
+    this.breadcrumb.setParams({
+      // TODO orientation!! or alignment?
       orientation: 'centered',
       size: 'large',
       separator: 'bullet',

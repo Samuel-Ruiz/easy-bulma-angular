@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {EbaComponentInterface} from '../interfaces/eba-component.interface';
+import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
 
 @Component({
   selector: 'eba-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.sass']
 })
-export class CalendarComponent implements EbaComponentInterface, OnInit {
+export class CalendarComponent implements AbstractEbaComponent, OnInit {
 
   viewDate: Date = new Date();
   events = [];
@@ -24,7 +24,7 @@ export class CalendarComponent implements EbaComponentInterface, OnInit {
     return 'calendar';
   }
 
-  setConfig(config: any) {
+  setParams(config: any) {
   }
 
 }
