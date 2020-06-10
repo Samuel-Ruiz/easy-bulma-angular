@@ -1,7 +1,10 @@
 import {NavbarItemModel} from './navbarItem.model';
+import {AbstractModel} from '../../intefaces/abstract.model';
 
 
-export class HeaderModel {
+export class HeaderModel implements AbstractModel {
+
+  public id: string;
   public component?: string;
   public navBarLeft?: NavbarItemModel[];
   public navBarRight?: NavbarItemModel[];

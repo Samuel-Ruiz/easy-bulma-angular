@@ -20,7 +20,7 @@ export class PGExplorerContainerComponent implements AfterViewInit {
     // console.log(this.header);
     /*
     this.header.setParams({
-      component: 'blog',
+      model: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',

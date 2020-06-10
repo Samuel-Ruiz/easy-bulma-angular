@@ -12,11 +12,14 @@ export class PGToDoContainerComponent implements OnInit {
   @ViewChild('breadcrumb', {read: true, static: false}) breadcrumb: BreadcrumbComponent;
   @ViewChild('header', {read: true, static: false}) header: HeaderBasicComponent;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     console.log('--- Loading eba-pg-to-do-container ---');
+    /*
     this.header.setParams({
+      id: 'header',
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',
@@ -48,5 +51,6 @@ export class PGToDoContainerComponent implements OnInit {
       size: 'large',
       separator: 'bullet',
     });
+     */
   }
 }

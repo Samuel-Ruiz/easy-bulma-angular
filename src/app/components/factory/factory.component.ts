@@ -1,37 +1,42 @@
-import {Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ViewContainerRefDirective} from './directives/view-container-ref.directive';
+import {
+  AfterViewChecked, ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Input,
+  OnDestroy,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 
 @Component({
   selector: 'eba-factory',
-  template: '<ng-template ebaViewContainerRefDirective></ng-template>'
+  template: '<ng-template #container></ng-template>'
 })
-export class FactoryComponent implements OnDestroy {
-  @Input() componentParams: any;
+export class FactoryComponent implements AfterViewChecked, OnDestroy {
+  @Input() model: any;
   @Input() factory: any;
-  @ViewChild(ViewContainerRefDirective, {static: true}) container: ViewContainerRefDirective;
+  @ViewChild('container', {read: ViewContainerRef, static: false}) container: ViewContainerRef;
   componentRef: ComponentRef<any>;
 
-  constructor(private resolver: ComponentFactoryResolver) {
+  constructor(private resolver: ComponentFactoryResolver, private ref: ChangeDetectorRef) {
+  }
+
+  ngAfterViewChecked() {
+    this.setContainerConfig();
+    this.ref.detectChanges();
   }
 
   ngOnDestroy() {
     this.componentRef.destroy();
   }
 
-  public publish(config: any, factory: any) {
-    this.componentParams = config;
-    this.factory = factory;
-    this.setContainerConfig();
-  }
-
   private setContainerConfig() {
-    console.log('Factory component -> ', this.factory);
-    console.log('Factory component -> ', this.componentParams);
-    if (this.componentParams?.component) {
-      this.container.viewContainerRef.clear();
-      const factory = this.resolver.resolveComponentFactory(this.factory.create(this.componentParams?.component));
-      this.componentRef = this.container.viewContainerRef.createComponent(factory);
-      this.componentRef.instance.setParams(this.componentParams);
+    if (this.model?.component) {
+      this.container.clear();
+      const factory = this.resolver.resolveComponentFactory(this.factory.create(this.model?.component));
+      this.componentRef = this.container.createComponent(factory);
+      (this.componentRef.instance).model = this.model;
     }
   }
 

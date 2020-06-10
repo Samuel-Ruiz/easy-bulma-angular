@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PGBlogHomeComponent } from './blog-home.component';
+import { PGBlogHomeComponent } from './blog-home.model';
 
 describe('PGBlogHomeComponent', () => {
   let component: PGBlogHomeComponent;

@@ -5,7 +5,6 @@
         <span *ngIf="positionResolver.isLeft(header.icon?.position)" class="icon is-small">
           <i [ngClass]="header.icon[headerIndex].icon" aria-hidden="true"></i>
         </span>
-        {{header.header}}
         <span *ngIf="positionResolver.isRight(header.icon?.position)" class="icon is-small">
           <i [ngClass]="header.icon?.icon" aria-hidden="true"></i>
         </span>
@@ -17,13 +16,9 @@
         (click)="isSelected(rowIndex);"
         [class.is-selected]="rowIndex == rowSelected"
         >
-      <td *ngFor="let field of getFields(row); trackBy: trackByFn;let columnIndex = index" [ngClass]="getElementStyle(columnIndex,  row)">
-        <div *ngIf="!isFieldAnObject(field)">
-          {{getFieldContent(field)}}
-        </div>
-        <div *ngIf="isFieldAnObject(field)">
-          <eba-factory-wrapper #factoryWrapper [factory]="factory" [components]="fieldComponentConfig(field)"></eba-factory-wrapper>
-        </div>
+      <td *ngFor="let field of row; trackBy: trackByFn;let columnIndex = index" [ngClass]="getElementStyle(columnIndex,  row)">
+        <eba-factory-wrapper *ngIf="isFieldAnObject(field.cell)" #factoryWrapperComponent [components]="field.cell"></eba-factory-wrapper>
+        <div *ngIf="!isFieldAnObject(field.cell)">{{field.cell}}</div>
       </td>
     </tr>
   </tbody>

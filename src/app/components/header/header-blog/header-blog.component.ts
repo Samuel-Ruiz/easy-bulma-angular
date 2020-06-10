@@ -21,10 +21,6 @@ export class HeaderBlogComponent implements AbstractEbaComponent, AfterViewInit 
   ngAfterViewInit(): void {
   }
 
-  public setParams(headerModel: HeaderModel) {
-    this.model = headerModel;
-  }
-
   getName(): string {
     return 'blog';
   }

@@ -1,46 +1,63 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NotificationService} from '../../../../../services/notification.service';
 import {HeaderComponent} from '../../../../../components/header/header.component';
 import {EbaShop} from '../../../../../components/eba-shop';
 import {TableComponent} from '../../../../../components/table/table.component';
 import {RestService} from '../../../../api/rest/rest.service';
-import {HeaderBasicComponent} from '../../../../../components/header/header-basic/header-basic.component';
 import {HeaderModel} from '../../../../../models/components/header/header.model';
 import {NavbarItemModel} from '../../../../../models/components/header/navbarItem.model';
-import {HeaderBlogComponent} from '../../../../../components/header/header-blog/header-blog.component';
-import {TableModel} from '../../../../../models/components/table/table.model';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'eba-pg-explorer-home',
   templateUrl: './explorer-home.component.html',
   styleUrls: ['./explorer-home.component.sass']
 })
-export class PGExplorerHomeComponent implements AfterViewInit {
+export class PGExplorerHomeComponent {
   @ViewChild('header', {static: false}) header: HeaderComponent;
   @ViewChild('table', {static: false}) table: TableComponent;
 
   message: string;
-  styleString = 'basic';
-  styleList: string[] = EbaShop.getItems().find(item => {
-    return item.label === 'header';
-  }).children.getLabels();
-  headerModel = new HeaderModel();
-  tableModel = new TableModel();
+  styleString;
+  styleList: string[];
+  headerModel;
+  tableModel;
   tableData;
+  myTool;
 
   constructor(private restApi: RestService, private notify: NotificationService) {
+    this.headerModel = this.buildHeaderModel('basic');
+
+    this.styleString = 'basic';
+    this.styleList = EbaShop.getItems().find(item => {
+      return item.label === 'header';
+    }).children.getLabels();
+
+    this.getComments();
   }
 
-  ngAfterViewInit() {
-    console.log('--- Loading eba-pg-explorer-home ---');
-    console.log(this.header);
-    console.log('Type -> ', this.styleString, typeof this.styleString);
+  sendNotification() {
+    this.notify.sendNotification(this.buildMessage(), this.styleString);
     this.headerModel.component = this.styleString;
-    this.headerModel.title = 'My company';
-    this.headerModel.subtitle = 'Powered by me';
-    this.headerModel.brandImg = 'https://bulma.io/images/bulma-logo.png';
-    this.headerModel.brandRef = 'https://bulma.io/documentation/';
-    this.headerModel.style = 'isPrimary';
+    this.setTableParams();
+    this.myTool = this.table.getInstantiatedComponent('header-2-1');
+  }
+
+  buildMessage(): string {
+    this.message = 'The selected style is [' + this.styleString + ']';
+    return this.message;
+  }
+
+  private buildHeaderModel(component) {
+    const model = new HeaderModel();
+
+    model.id = 'header';
+    model.component = component;
+    model.title = 'My company';
+    model.subtitle = 'Powered by me';
+    model.brandImg = 'https://bulma.io/images/bulma-logo.png';
+    model.brandRef = 'https://bulma.io/documentation/';
+    model.style = 'isPrimary';
 
     const navBarLeft1 = new NavbarItemModel();
     navBarLeft1.itemName = 'Home';
@@ -72,37 +89,26 @@ export class PGExplorerHomeComponent implements AfterViewInit {
     const navBarRight = [];
     navBarRight.push(navBarItemRight);
 
-    this.headerModel.navBarLeft = navBarLeft;
-    this.headerModel.navBarRight = navBarRight;
-    this.header.setParams(this.headerModel);
-    this.getComments();
-  }
+    model.navBarLeft = navBarLeft;
+    model.navBarRight = navBarRight;
 
-  sendNotification() {
-    this.notify.sendNotification(this.buildMessage(), this.styleString);
-    this.refreshModel();
-    this.header.setParams(this.headerModel);
-    this.setTableParams();
-  }
-
-  buildMessage(): string {
-    this.message = 'The selected style is [' + this.styleString + ']';
-    return this.message;
-  }
-
-  private refreshModel() {
-    this.headerModel.component = this.styleString;
+    return model;
   }
 
   private setTableParams() {
     if (this.tableData) {
       this.tableData.forEach((e) => {
-        let _tools = new HeaderBasicComponent();
-        if (this.styleString === 'blog') {
-          _tools = new HeaderBlogComponent();
-        }
-        _tools.setParams(this.headerModel);
-        e.tools = {_tools};
+        const tools = [];
+        const tool1 = new HeaderComponent();
+        tool1.model = this.buildHeaderModel(this.styleString);
+        tool1.model.id = 'header-' + e.id + '-1';
+
+        const tool2 = new HeaderComponent();
+        tool2.model = this.buildHeaderModel(this.styleString);
+        tool2.model.id = 'header-' + e.id + '-2';
+        tool2.model.component = 'blog';
+        tools.push(tool1, tool2);
+        e.tools = tools;
       });
 
       this.tableModel = ({
@@ -140,12 +146,11 @@ export class PGExplorerHomeComponent implements AfterViewInit {
           return index < 3;
         }),
       });
-      this.table.setParams(this.tableModel);
     }
   }
 
   private getComments() {
-    this.restApi.getComments().subscribe(response => {
+    this.restApi.getComments().pipe(delay(0)).subscribe(response => {
       this.tableData = response;
       this.setTableParams();
     });

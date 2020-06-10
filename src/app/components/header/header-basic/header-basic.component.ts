@@ -19,10 +19,6 @@ export class HeaderBasicComponent implements AbstractEbaComponent {
   constructor() {
   }
 
-  public setParams(headerModel: HeaderModel) {
-    this.model = headerModel;
-  }
-
   public getName(): string {
     return 'basic';
   }

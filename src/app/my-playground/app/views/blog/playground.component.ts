@@ -13,11 +13,14 @@ export class PGBlogContainerComponent implements OnInit {
   @ViewChild('breadcrumb', {read: true, static: false}) breadcrumb: BreadcrumbComponent;
   @ViewChild('header', {read: true, static: false}) header: HeaderBasicComponent;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     console.log('--- Loading eba-pg-blog-container ---');
+    /*
     this.header.setParams({
+      id: 'header',
       component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',
@@ -55,5 +58,6 @@ export class PGBlogContainerComponent implements OnInit {
       size: 'large',
       separator: 'bullet',
     });
+     */
   }
 }

@@ -16,7 +16,9 @@ export class PGTableContainerComponent implements OnInit {
 
   ngOnInit() {
     console.log('--- Loading eba-pg-table-container ---');
+    /*
     this.header.setParams({
+      id: 'header',
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',
@@ -48,5 +50,6 @@ export class PGTableContainerComponent implements OnInit {
       size: 'large',
       separator: 'bullet',
     });
+     */
   }
 }

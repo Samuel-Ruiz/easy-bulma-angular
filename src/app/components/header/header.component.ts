@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {HeaderModel} from '../../models/components/header/header.model';
 import {HeaderFactory} from './header-factory';
 import {HeaderShop} from './header-shop';
@@ -10,21 +10,15 @@ import {FactoryComponent} from '../factory/factory.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements AfterViewInit, AbstractEbaComponent {
+export class HeaderComponent implements AbstractEbaComponent {
 
-  @Input() model: HeaderModel = new HeaderModel();
-  @ViewChild('factoryComponent', {static: false}) factoryComponent!: FactoryComponent;
+  @Input() model: HeaderModel;
+  @ViewChild('factoryComponent', {read: FactoryComponent, static: false}) factoryComponent!: FactoryComponent;
 
   factory: HeaderFactory = new HeaderFactory();
 
-  ngAfterViewInit() {
-    console.log('Header component -> ', this.model, this.factoryComponent, this.factory);
-    this.factoryComponent.publish(this.model, this.factory);
-  }
-
-  public setParams(config: HeaderModel) {
-    this.model = config;
-    this.factoryComponent.publish(config, new HeaderFactory());
+  constructor() {
+    this.model = new HeaderModel();
   }
 
   getName(): string {
