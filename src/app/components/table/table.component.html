@@ -5,6 +5,7 @@
         <span *ngIf="positionResolver.isLeft(header.icon?.position)" class="icon is-small">
           <i [ngClass]="header.icon[headerIndex].icon" aria-hidden="true"></i>
         </span>
+        {{header.header}}
         <span *ngIf="positionResolver.isRight(header.icon?.position)" class="icon is-small">
           <i [ngClass]="header.icon?.icon" aria-hidden="true"></i>
         </span>
