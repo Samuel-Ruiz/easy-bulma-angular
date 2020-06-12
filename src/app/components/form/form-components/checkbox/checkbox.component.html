@@ -1,0 +1,4 @@
+<label #checkbox class="checkbox">
+  <input type="checkbox" [ngModel]="model.newValue" (ngModelChange)="onModelChange($event)" >
+  {{model.text}}
+</label>

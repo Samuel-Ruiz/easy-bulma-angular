@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
+import {Component, OnInit} from '@angular/core';
+import {EbaAbstractComponent} from '../factory/interfaces/eba-abstract-component';
 
 @Component({
   selector: 'eba-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.sass']
 })
-export class FooterComponent implements AbstractEbaComponent, OnInit {
+export class FooterComponent extends EbaAbstractComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
   }

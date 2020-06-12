@@ -1,15 +1,16 @@
 import {Optional} from '@angular/core';
 import {TableColumnModel} from './table-column.model';
-import {AbstractModel} from '../../intefaces/abstract.model';
-import {TableHeaderModel} from './table-header.model';
+import {EbaAbstractModel} from '../../../components/factory/interfaces/eba-abstract-model';
 
 
-export class TableModel implements AbstractModel {
+export class TableModel implements EbaAbstractModel {
 
+  id: string;
+  component: string;
   @Optional() public columns?: TableColumnModel[];
   @Optional() public modifier?: string[];
-  @Optional() id: string;
-  @Optional() public data: object[];
+  @Optional() public data: any[];
 
-  constructor() {}
+  constructor() {
+  }
 }

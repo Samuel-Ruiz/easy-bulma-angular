@@ -1,0 +1,7 @@
+<div #select [ngClass]="model.modifier | classResolver : styleResolver" class="select">
+  <label>
+    <select [ngModel]="model.newValue" (ngModelChange)="onModelChange($event)">
+      <option *ngFor="let value of model.values">{{value}}</option>
+    </select>
+  </label>
+</div>

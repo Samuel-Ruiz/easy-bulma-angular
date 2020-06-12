@@ -17,4 +17,7 @@
 <button (click)="sendNotification()">Click</button>
   <eba-header #header [model]="headerModel"></eba-header>
   <eba-table #table [model]="tableModel"></eba-table>
+  <div *ngFor="let mapEntry of selectMap | keyvalue"> {{mapEntry.key}} {{mapEntry.value}}</div>
+  <div *ngFor="let mapEntry of checkboxMap | keyvalue"> {{mapEntry.key}} {{mapEntry.value}}</div>
+
 </section>

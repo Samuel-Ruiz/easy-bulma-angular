@@ -1,4 +1,4 @@
-<section class="hero" [ngClass]="[styleResolver.getValue(model.style)]">
+<section class="hero" [ngClass]="model.style | classResolver: styleResolver">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">

@@ -1,23 +1,31 @@
 import {
-  AfterViewChecked, ChangeDetectorRef,
+  AfterViewChecked,
+  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  EventEmitter,
   Input,
   OnDestroy,
+  Output,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import {EbaAbstractModel} from './interfaces/eba-abstract-model';
+import {EbaFactoryInterface} from './interfaces/eba-factory.interface';
+import {EbaOutputModel} from './interfaces/eba-ouput-component';
 
 @Component({
   selector: 'eba-factory',
-  template: '<ng-template #container></ng-template>'
+  template: '<ng-template #host></ng-template>'
 })
 export class FactoryComponent implements AfterViewChecked, OnDestroy {
-  @Input() model: any;
-  @Input() factory: any;
-  @ViewChild('container', {read: ViewContainerRef, static: false}) container: ViewContainerRef;
+  @Input() model: EbaAbstractModel;
+  @Input() factory: EbaFactoryInterface;
+  @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('host', {read: ViewContainerRef, static: false}) container: ViewContainerRef;
   componentRef: ComponentRef<any>;
+  nameComponentRef: string;
 
   constructor(private resolver: ComponentFactoryResolver, private ref: ChangeDetectorRef) {
   }
@@ -31,13 +39,46 @@ export class FactoryComponent implements AfterViewChecked, OnDestroy {
     this.componentRef.destroy();
   }
 
+  public getComponentInstance() {
+    return this.componentRef?.instance;
+  }
+
   private setContainerConfig() {
     if (this.model?.component) {
-      this.container.clear();
-      const factory = this.resolver.resolveComponentFactory(this.factory.create(this.model?.component));
-      this.componentRef = this.container.createComponent(factory);
-      (this.componentRef.instance).model = this.model;
+      if (!this.isComponentInstantiated()) {
+        this.createComponent();
+      } else {
+        if (this.hasComponentChanged()) {
+          this.createComponent();
+        }
+      }
     }
+  }
+
+  private createComponent() {
+    this.nameComponentRef = this.model.component;
+    this.container.clear();
+    const factory = this.resolver.resolveComponentFactory(this.factory.create(this.nameComponentRef));
+    this.componentRef = this.container.createComponent(factory);
+    (this.componentRef.instance).model = this.model;
+    this.bindOutputEmitter();
+  }
+
+  private bindOutputEmitter() {
+    if ('newValue' in this.model) {
+      this.componentRef.instance.onChange.subscribe( newValue => {
+        (this.model as EbaOutputModel).newValue = newValue;
+        this.onChange.emit(newValue);
+      });
+    }
+  }
+
+  private isComponentInstantiated(): boolean {
+    return this.componentRef != null && this.componentRef?.instance != null;
+  }
+
+  private hasComponentChanged(): boolean {
+    return this.nameComponentRef !== this.model.component;
   }
 
 }

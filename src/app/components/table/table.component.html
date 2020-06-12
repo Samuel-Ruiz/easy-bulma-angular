@@ -1,4 +1,4 @@
-<table #table class="table" [ngClass]="getModifiers()">
+<table #table class="table" [ngClass]="model?.modifier | resolverAsArray : modifierResolver">
   <thead>
     <tr>
       <th *ngFor="let header of headers; trackBy: trackByFn; let headerIndex = index" [ngClass]="elementAlignment.getValue(header?.alignment)">

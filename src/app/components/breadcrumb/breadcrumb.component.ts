@@ -6,7 +6,7 @@ import {BreadcrumbModel} from '../../models/components/breadcrumb/breadcrumb.mod
 import {OrientationResolver} from '../../models/resolvers/commons/orientation.resolver';
 import {SizeResolver} from '../../models/resolvers/commons/size.resolver';
 import {BreadcrumbSeparatorResolver} from '../../models/resolvers/breadcrumb/breadcrumbSeparator.resolver';
-import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
+import {EbaAbstractComponent} from '../factory/interfaces/eba-abstract-component';
 
 @Component({
   selector: 'eba-breadcrumb',
@@ -14,7 +14,7 @@ import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component
   styleUrls: ['./breadcrumb.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
-export class BreadcrumbComponent implements AbstractEbaComponent, AfterContentInit {
+export class BreadcrumbComponent extends EbaAbstractComponent implements AfterContentInit {
 
   @Input() options: BreadcrumbModel = new BreadcrumbModel();
 
@@ -28,7 +28,9 @@ export class BreadcrumbComponent implements AbstractEbaComponent, AfterContentIn
   @ViewChild('breadcrumbNav', { static: false }) breadcrumbNav: ElementRef;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router) {}
+              private router: Router) {
+    super();
+  }
 
   ngAfterContentInit() {
     this.router.events.pipe(

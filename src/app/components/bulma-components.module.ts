@@ -13,6 +13,9 @@ import {TableComponent} from './table/table.component';
 import {CalendarComponent} from './calendar/calendar.component';
 import {CalendarModule} from 'angular-calendar';
 import {FactoryModule} from './factory/factory.module';
+import {SelectComponent} from './form/form-components/select/select.component';
+import {EbaPipesModule} from '../pipes/eba-pipes.module';
+import {FormModule} from './form/form-factory.module';
 
 export {HeaderModule} from './header/header.module';
 
@@ -38,10 +41,13 @@ export {NotificationService} from '../services/notification.service';
     RouterModule,
     HeaderModule,
     CalendarModule,
-    FactoryModule
+    FactoryModule,
+    FormModule,
+    EbaPipesModule
   ],
   exports: [
     HeaderModule,
+    FormModule,
     FooterComponent,
     TableComponent,
     CalendarComponent,

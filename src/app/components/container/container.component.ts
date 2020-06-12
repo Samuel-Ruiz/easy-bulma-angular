@@ -1,18 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WeightResolver} from '../../models/resolvers/commons/weight.resolver';
-import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
+import {EbaAbstractComponent} from '../factory/interfaces/eba-abstract-component';
 
 @Component({
   selector: 'eba-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.sass']
 })
-export class ContainerComponent implements AbstractEbaComponent, OnInit {
+export class ContainerComponent extends  EbaAbstractComponent implements OnInit {
 
   @Input() options: string;
   weightResolver: WeightResolver = new WeightResolver();
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit() {}
 

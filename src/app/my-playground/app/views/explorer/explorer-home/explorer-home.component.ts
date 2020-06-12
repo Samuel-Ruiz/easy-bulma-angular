@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {NotificationService} from '../../../../../services/notification.service';
 import {HeaderComponent} from '../../../../../components/header/header.component';
 import {EbaShop} from '../../../../../components/eba-shop';
@@ -6,14 +6,16 @@ import {TableComponent} from '../../../../../components/table/table.component';
 import {RestService} from '../../../../api/rest/rest.service';
 import {HeaderModel} from '../../../../../models/components/header/header.model';
 import {NavbarItemModel} from '../../../../../models/components/header/navbarItem.model';
-import {delay} from 'rxjs/operators';
+import {FormFactoryComponent} from '../../../../../components/form/form-factory.component';
+import {SelectModel} from '../../../../../models/components/select/select.model';
+import {CheckboxModel} from '../../../../../models/components/checkbox/checkbox.model';
 
 @Component({
   selector: 'eba-pg-explorer-home',
   templateUrl: './explorer-home.component.html',
   styleUrls: ['./explorer-home.component.sass']
 })
-export class PGExplorerHomeComponent {
+export class PGExplorerHomeComponent implements AfterViewInit {
   @ViewChild('header', {static: false}) header: HeaderComponent;
   @ViewChild('table', {static: false}) table: TableComponent;
 
@@ -23,9 +25,14 @@ export class PGExplorerHomeComponent {
   headerModel;
   tableModel;
   tableData;
-  myTool;
+  selectMap: Map<string, string>;
+  checkboxMap: Map<string, string>;
+  selectIds: any[];
 
   constructor(private restApi: RestService, private notify: NotificationService) {
+    this.selectMap = new Map<string, string>();
+    this.checkboxMap = new Map<string, string>();
+    this.selectIds = [];
     this.headerModel = this.buildHeaderModel('basic');
 
     this.styleString = 'basic';
@@ -36,11 +43,22 @@ export class PGExplorerHomeComponent {
     this.getComments();
   }
 
+  ngAfterViewInit() {
+    this.table.onChange.subscribe(change => {
+      if (change.id.startsWith('select')) {
+        this.selectMap.set(change.id, change.newValue);
+      }
+      if (change.id.startsWith('checkbox')) {
+        this.checkboxMap.set(change.id,  String(change.newValue));
+      }
+    });
+  }
+
   sendNotification() {
     this.notify.sendNotification(this.buildMessage(), this.styleString);
     this.headerModel.component = this.styleString;
+    this.headerModel.title = 'My company - ' + this.styleString;
     this.setTableParams();
-    this.myTool = this.table.getInstantiatedComponent('header-2-1');
   }
 
   buildMessage(): string {
@@ -53,7 +71,7 @@ export class PGExplorerHomeComponent {
 
     model.id = 'header';
     model.component = component;
-    model.title = 'My company';
+    model.title = 'My company - ' + component;
     model.subtitle = 'Powered by me';
     model.brandImg = 'https://bulma.io/images/bulma-logo.png';
     model.brandRef = 'https://bulma.io/documentation/';
@@ -95,18 +113,37 @@ export class PGExplorerHomeComponent {
     return model;
   }
 
+  private buildSelectModel(id, position) {
+    const model = new SelectModel();
+    model.id = 'select-' + id + '-' + position;
+    model.component = 'select';
+    model.modifier = 'isDanger';
+    model.values = ['Value1', 'Value2', 'Value3'];
+    model.newValue = 'Value1';
+    this.selectMap.set(model.id, model.newValue);
+    return model;
+  }
+
+  private buildCheckboxModel(id, position) {
+    const model = new CheckboxModel();
+    model.id = 'checkbox-' + id + '-' + position;
+    model.component = 'checkbox';
+    model.newValue = false;
+    model.text = model.id;
+    this.checkboxMap.set(model.id, String(model.newValue));
+    return model;
+  }
+
   private setTableParams() {
+    this.tableData.push({id: 1, title: 'First title'}, {id: 2, title: 'Second title'});
     if (this.tableData) {
       this.tableData.forEach((e) => {
         const tools = [];
-        const tool1 = new HeaderComponent();
-        tool1.model = this.buildHeaderModel(this.styleString);
-        tool1.model.id = 'header-' + e.id + '-1';
+        const tool1 = new FormFactoryComponent();
+        tool1.model = this.buildSelectModel(e.id, 1);
 
-        const tool2 = new HeaderComponent();
-        tool2.model = this.buildHeaderModel(this.styleString);
-        tool2.model.id = 'header-' + e.id + '-2';
-        tool2.model.component = 'blog';
+        const tool2 = new FormFactoryComponent();
+        tool2.model = this.buildCheckboxModel(e.id, 2);
         tools.push(tool1, tool2);
         e.tools = tools;
       });
@@ -145,14 +182,21 @@ export class PGExplorerHomeComponent {
         data: this.tableData.filter((element, index) => {
           return index < 3;
         }),
+        modifier: [
+          'hoverable', 'striped', 'responsive'
+        ]
       });
     }
   }
 
   private getComments() {
+    this.tableData = [];
+    this.setTableParams();
+    /*
     this.restApi.getComments().pipe(delay(0)).subscribe(response => {
       this.tableData = response;
       this.setTableParams();
     });
+     */
   }
 }

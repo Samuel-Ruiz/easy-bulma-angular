@@ -1,8 +1,8 @@
-import header from './eba.index';
+import index from './eba.index';
 
 export class EbaShop {
   public static getItems() {
-    return header.map(item => ({
+    return index.map(item => ({
       label: item.prototype.getName(),
       type: item,
       children: item.prototype.getChildren(),

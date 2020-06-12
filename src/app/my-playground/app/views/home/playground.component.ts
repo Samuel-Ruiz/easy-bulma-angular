@@ -17,8 +17,8 @@ export class PGHomeContainerComponent implements OnInit {
   ngOnInit() {
     console.log('--- Loading eba-pg-home-container ---');
     /*
-    this.header.setParams({
-      id: 'header',
+    this.index.setParams({
+      id: 'index',
       title: 'My company',
       subtitle: 'Powered by me',
       brandImg: 'https://bulma.io/images/bulma-logo.png',

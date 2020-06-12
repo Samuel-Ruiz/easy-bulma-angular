@@ -17,9 +17,9 @@ export class PGExplorerContainerComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     console.log('--- Loading eba-pg-explorer-container ---');
-    // console.log(this.header);
+    // console.log(this.index);
     /*
-    this.header.setParams({
+    this.index.setParams({
       model: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',

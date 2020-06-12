@@ -19,8 +19,8 @@ export class PGBlogContainerComponent implements OnInit {
   ngOnInit() {
     console.log('--- Loading eba-pg-blog-container ---');
     /*
-    this.header.setParams({
-      id: 'header',
+    this.index.setParams({
+      id: 'index',
       component: 'blog',
       title: 'My company',
       subtitle: 'Powered by me',

@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {ViewContainerRefDirective} from './directives/view-container-ref.directive';
 import {FactoryComponent} from './factory.component';
 import {FactoryWrapperComponent} from './factory-wrapper.component';
-import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 
 

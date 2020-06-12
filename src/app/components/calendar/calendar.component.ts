@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractEbaComponent} from '../factory/interfaces/abstract-eba.component';
+import {Component, OnInit} from '@angular/core';
+import {EbaAbstractComponent} from '../factory/interfaces/eba-abstract-component';
 
 @Component({
   selector: 'eba-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.sass']
 })
-export class CalendarComponent implements AbstractEbaComponent, OnInit {
+export class CalendarComponent extends EbaAbstractComponent implements OnInit {
 
   viewDate: Date = new Date();
   events = [];
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
   }
