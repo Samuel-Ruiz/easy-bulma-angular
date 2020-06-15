@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaygroundComponent } from './playground.component';
+import { PGBlogHomeComponent } from './blog-home.model';
 
-describe('PlaygroundComponent', () => {
-  let component: PlaygroundComponent;
-  let fixture: ComponentFixture<PlaygroundComponent>;
+describe('PGBlogHomeComponent', () => {
+  let component: PGBlogHomeComponent;
+  let fixture: ComponentFixture<PGBlogHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaygroundComponent ]
+      declarations: [ PGBlogHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaygroundComponent);
+    fixture = TestBed.createComponent(PGBlogHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

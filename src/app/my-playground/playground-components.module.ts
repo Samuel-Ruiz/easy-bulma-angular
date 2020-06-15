@@ -1,4 +1,4 @@
-import {PGContainerComponent} from './app/app.component';
+import {PGContainerComponent} from './app/playground.component';
 import {PGHomeComponent} from './app/views/home/home.component';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -37,8 +37,8 @@ import {CalendarModule} from 'angular-calendar';
     PGBlogModule,
     PGExplorerModule
   ],
-  exports: [],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  exports: [PGExplorerModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PGAppModule {
 }

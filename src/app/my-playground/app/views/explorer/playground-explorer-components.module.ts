@@ -3,31 +3,28 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BulmaComponentsModule} from '../../../../components/bulma-components.module';
-import {PGExplorerContainerComponent} from './playground.component';
-import {PGExplorerRoutingModule} from './playground-explorer-routing.module';
 import {PGExplorerHomeComponent} from './explorer-home/explorer-home.component';
-import {CalendarDayModule, CalendarModule} from 'angular-calendar';
+import {PGExplorerTableComponent} from './explorer-table/explorer-table.component';
+import {ExplorerRoutingModule} from './explorer-routing.module';
 
 
 @NgModule({
   declarations: [
-    PGExplorerContainerComponent,
     PGExplorerHomeComponent,
+    PGExplorerTableComponent
   ],
   imports: [
     HttpClientModule,
     CommonModule,
-    PGExplorerRoutingModule,
     FormsModule,
     BulmaComponentsModule,
   ],
-  providers: [],
-  bootstrap: [PGExplorerContainerComponent],
   exports: [
-    PGExplorerRoutingModule,
-    PGExplorerContainerComponent,
+    PGExplorerHomeComponent,
+    PGExplorerTableComponent,
+    ExplorerRoutingModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PGExplorerModule {
 }

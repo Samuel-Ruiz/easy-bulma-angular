@@ -1,12 +1,21 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {PGRoutingModule} from './my-playground/app/playground-routing.module';
-import {BulmaRoutingModule} from './components/bulma-routing.module';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PGExplorerModule} from './my-playground/app/views/explorer/playground-explorer-components.module';
+import {PGContainerComponent} from './my-playground/app/playground.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'playground', component: PGContainerComponent, children: [
+      {
+        path: 'explorer', loadChildren: () => PGExplorerModule
+      }
+    ]
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), PGRoutingModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

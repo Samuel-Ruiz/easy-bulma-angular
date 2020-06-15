@@ -1,4 +1,3 @@
-import {NavbarItemModel} from '../header/navbarItem.model';
 import {Optional} from '@angular/core';
 
 
@@ -10,6 +9,7 @@ export class BreadcrumbModel {
   @Optional() public rootName?: string;
   @Optional() public rootUrl?: string;
 
-  constructor() {}
+  constructor() {
+  }
 
 }
